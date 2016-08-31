@@ -1,6 +1,6 @@
 galaxy_info:
   author: Fredrik Dahlgren
-  description: Installs custom Slack webhooks for the piggelin and blackeberg channels.
+  description: Sets up a Ubuntu Xenial droplet on Digital Ocean.
   
   license: unlicense
   

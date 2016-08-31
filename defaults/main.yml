@@ -1,7 +1,8 @@
 ---
 ssh_key_name: ""
-ssh_public_key: ""
+ssh_key_file: "{{ ssh_key_name }}.pub"
+ssh_public_key: "{{ lookup('file', '~/.ssh/{{ ssh_key_file }}') }}"
 droplet_name: ""
 size_id: "512mb"
-region_id: "sgp1"
+region_id: "nyc2"
 api_token: ""
