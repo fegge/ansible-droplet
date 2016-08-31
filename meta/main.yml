@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Fredrik Dahlgren
+  description: Installs custom Slack webhooks for the piggelin and blackeberg channels.
+  
+  license: unlicense
+  
+  min_ansible_version: 1.9.5 # To ensure version 2 of the Digital Ocean API
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - slack
+
+dependencies:
+  - { role: fegge.security, slack_webhook: {{ admin_webhook }} }

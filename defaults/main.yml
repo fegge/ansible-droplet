@@ -1,0 +1,7 @@
+---
+ssh_key_name: ""
+ssh_public_key: ""
+droplet_name: ""
+size_id: "512mb"
+region_id: "sgp1"
+api_token: ""
