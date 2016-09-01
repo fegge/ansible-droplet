@@ -13,28 +13,20 @@
   digital_ocean:
     command: ssh
     state: present
-    name: {{ ssh_key_name }}
+    name: "{{ ssh_key_name }}"
     ssh_pub_key: lookup('file', '~/.ssh/{{ ssh_key_name }}.pub')
-    api_token: {{ api_token }}
+    api_token: "{{ api_token }}"
   register: ssh_key
 
 - name: Create a new droplet
   digital_ocean:
     command: droplet
     state: present
-    name: {{ droplet_name }}
+    name: "{{ droplet_name }}"
     unique_name: yes # Ensure idempotency
-    size_id: {{ size_id }}
-    region_id: {{ region_id }}
-    image_id: {{ image_id }}
-    ssh_key_ids: {{ ssh_key.ssh_key.id }}
-    api_token: {{ api_token }}
+    size_id: "{{ size_id }}"
+    region_id: "{{ region_id }}"
+    image_id: "{{ image_id }}"
+    ssh_key_ids: "{{ ssh_key.ssh_key.id }}"
+    api_token: "{{ api_token }}"
   register: droplet
-  
-- name: Send notification message via Slack
-  local_action:
-    module: slack
-    token: "{{ slack_token }}"
-    msg: "New droplet created."
-    username: "ansible"
-  when: not ({{ slack_token }} == "")

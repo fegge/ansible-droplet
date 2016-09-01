@@ -3,7 +3,6 @@
 ssh_key_name: ""
 droplet_name: ""
 api_token: ""
-slack_token: ""
 
 # Change as desired.
 ssh_key_password: "" # No SSH key paasword.
