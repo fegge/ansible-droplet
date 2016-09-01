@@ -1,6 +1,6 @@
 ---
 - name Create a new SSH key
-  local_action: command test -e ~/.ssh/{{ ssh_key_name }}.pub || ssh-keygen -t rsa -b 4096 -N "" -f ~/.ssh/{{ ssh_key_name }}
+  local_action: command test -e ~/.ssh/{{ ssh_key_name }}.pub || ssh-keygen -t rsa -b 4096 -N {{ ssh_key_password }} -f ~/.ssh/{{ ssh_key_name }}
 
 - name: Register the SSH key
   digital_ocean:
