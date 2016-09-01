@@ -1,26 +1,19 @@
-Slack
-=========
+Droplet
+=======
 
-Deploy custom Slack webhooks to an Ubuntu server.
+Create a Digital Ocean droplet.
 
 Requirements
 ------------
 
-This role uses the `digital_ocean` module which requires Python >= 2.6 with the dopy module on the executing host.
+This role uses the `digital_ocean` module which requires Python >= 2.6 with the `dopy` module on the executing host.
 
 Role Variables
 --------------
 
-- `admin_webhook` - Used by fegge.security to set up SSH logging to Slack.
-- `piggelin_webhook` - Messages for the Piggelin channel will be posted here.
-- `blackeberg_webhook` - Messages for the Blackeberg channel will be posted here.
-
-All webhook URLs default to the empty string and must be set for the integrations to function properly.
-
-Dependencies
-------------
-
-- fegge.security - Configures SSH logging, `ufw`, `fail2ban`, and `unattended-upgrades`.
+- `ssh_key_name` - The name of the SSH key to use. This may be a local key (found in ~/.ssh). If not, a new SSH key is generated.
+- `droplet_name` - The name of the droplet. If the droplet does not already exist, it will be created.
+- `api_token` - Your API token for the Digital Ocean API.
 
 Example Playbook
 ----------------
@@ -29,7 +22,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: all
       roles:
-         - { role: fegge.slack }
+         - { role: fegge.droplet }
 
 License
 -------
@@ -39,4 +32,4 @@ Unlicense
 Build status
 ------------
 
-[![Build Status](https://travis-ci.org/fegge/ansible-slack.svg?branch=master)](https://travis-ci.org/fegge/ansible-slack)
+[![Build Status](https://travis-ci.org/fegge/ansible-droplet.svg?branch=master)](https://travis-ci.org/fegge/ansible-droplet)

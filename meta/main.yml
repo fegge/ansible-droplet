@@ -12,7 +12,4 @@ galaxy_info:
         - all
 
   galaxy_tags:
-    - slack
-
-dependencies:
-  - { role: fegge.security, slack_webhook: {{ admin_webhook }} }
+    - digitalocean

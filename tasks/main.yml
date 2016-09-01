@@ -1,15 +1,17 @@
 ---
-- name: Ensure that the SSH key exists
+- name Create a new SSH key
+  local_action: command test -e ~/.ssh/{{ ssh_key_name }}.pub || ssh-keygen -t rsa -b 4096 -N "" -f ~/.ssh/{{ ssh_key_name }}
+
+- name: Register the SSH key
   digital_ocean:
     command: ssh
     state: present
     name: {{ ssh_key_name }}
-    ssh_pub_key: {{ ssh_public_key }}
+    ssh_pub_key: lookup('file', '~/.ssh/{{ ssh_key_name }}.pub')
     api_token: {{ api_token }}
-    when: (not ({{ ssh_key_name }} == "")) && (not {{ ssh_public_key }} == 0))
   register: ssh_key
 
-- name: Ensure that the droplet exists
+- name: Create a new droplet
   digital_ocean:
     command: droplet
     state: present
@@ -17,7 +19,7 @@
     unique_name: yes # Ensure idempotency
     size_id: {{ size_id }}
     region_id: {{ region_id }}
-    image_id: ubuntu-16-04-x64
+    image_id: {{ image_id }}
     ssh_key_ids: {{ ssh_key.ssh_key.id }}
     api_token: {{ api_token }}
   register: droplet
