@@ -1,4 +1,3 @@
----
 - name: Check if SSH key exists
   local_action: 
     command: "test -e ~/.ssh/{{ ssh_key_name }}"
