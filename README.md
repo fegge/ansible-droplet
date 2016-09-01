@@ -6,7 +6,7 @@ Create a Digital Ocean droplet.
 Requirements
 ------------
 
-This role uses the `digital_ocean` module which requires Python >= 2.6 with the `dopy` module on the executing host.
+This role uses the `digital_ocean` Ansible module which requires Python >= 2.6 with the `dopy` module on the executing host.
 
 Role Variables
 --------------

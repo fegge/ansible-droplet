@@ -1,6 +1,13 @@
 ---
-- name Create a new SSH key
-  local_action: command (test -e "~/.ssh/{{ ssh_key_name }}") || (ssh-keygen -t rsa -b 4096 -N "{{ ssh_key_password }}" -f "~/.ssh/{{ ssh_key_name }}")
+- name: Check if SSH key exists
+  local_action: command test -e ~/.ssh/{{ ssh_key_name }}
+  register: ssh_key_exists
+  
+- name: Generate new SSH key
+  local_action: command ssh-keygen -t rsa -b 4096 \
+  -N {{ ssh_key_password }} \
+  -f ~/.ssh/{{ ssh_key_name }}
+  when: not ssh_key_exists
 
 - name: Register the SSH key
   digital_ocean:
