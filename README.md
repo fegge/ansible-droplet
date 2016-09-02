@@ -18,11 +18,14 @@ Role Variables
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+The following example playbook creates a new Ubuntu Xenial droplet named `pikachu` in `nyc2`.
 
     - hosts: all
       roles:
-         - { role: fegge.droplet }
+         - role: fegge.droplet
+         - ssh_key_name: ocean-default
+         - droplet_name: pikachu
+         - api_token: a4fe0892...b0
 
 License
 -------
