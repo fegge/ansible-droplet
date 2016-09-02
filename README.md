@@ -24,7 +24,7 @@ There are a number of other variables defined under `defauls` with reasonably sa
 - `size_id` - With default value "512mb".
 - `region_id` - Set to "nyc" by default.
 
-For the last three, refer to the Digital Ocean API documentation.
+For the last three, refer to the Digital Ocean API [documentation](https://developers.digitalocean.com/documentation/v2/).
 
 Example Playbook
 ----------------
@@ -41,7 +41,7 @@ The following example playbook creates a new Ubuntu Xenial droplet named `pikach
 License
 -------
 
-Unlicense
+Unlicense (http://unlicense.org)
 
 Build status
 ------------
