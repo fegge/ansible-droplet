@@ -1,6 +1,6 @@
 galaxy_info:
   author: Fredrik Dahlgren
-  description: Sets up a Ubuntu Xenial droplet on Digital Ocean.
+  description: Sets up a droplet on Digital Ocean.
   
   license: unlicense
   
@@ -14,5 +14,5 @@ galaxy_info:
   galaxy_tags:
     - digitalocean
     - droplet
-    
+
 dependencies: []
