@@ -22,7 +22,7 @@ There are a number of other variables defined under `defauls` with reasonably sa
 - `ssh_key_password` - With default value "" (for no password).
 - `image_id` - Which defaults to "ubuntu-16-04-x64".
 - `size_id` - With default value "512mb".
-- `region_id` - Set to "nyc" by default.
+- `region_id` - Set to "nyc2" by default.
 
 For the last three, refer to the Digital Ocean API [documentation](https://developers.digitalocean.com/documentation/v2/).
 
