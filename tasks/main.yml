@@ -29,13 +29,13 @@
     image_id: "{{ image_id }}"
     ssh_key_ids: "{{ ssh_key.ssh_key.id }}"
     api_token: "{{ api_token }}"
-  register: droplet
+  register: digital_ocean
 
 - name: Add new host to inventory.
   add_host:
-    name: "{{ droplet.ip_address }}"
+    name: "{{ digital_ocean.droplet.ip_address }}"
     group: droplets
-  when: droplet is defined
+  when: digital_ocean.droplet is defined
 
 - debug: msg="Droplet {{ droplet.droplet.id }} created."
 - debug: msg="Droplet IP address is {{ droplet.droplet.ip_address }}"
