@@ -37,5 +37,8 @@
     group: droplets
   when: digital_ocean.droplet is defined
 
+- name: Wait for droplet to come online.
+  local_action: "wait_for port=22 host={{ digital_ocean.droplet.ip_address }}"
+
 - debug: msg="Droplet {{ digital_ocean.droplet.id }} created."
 - debug: msg="Droplet IP address is {{ digital_ocean.droplet.ip_address }}"
