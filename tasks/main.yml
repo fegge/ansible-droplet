@@ -35,6 +35,9 @@
   add_host:
     name: "{{ digital_ocean.droplet.ip_address }}"
     group: droplets
+    ansible_ssh_user: root
+    ansible_ssh_host: "{{ digital_ocean.droplet.ip_address }}"
+    ansible_ssh_private_key: "~/.ssh/{{ ssh_key_name }}"
   when: digital_ocean.droplet is defined
 
 - name: Wait for droplet to come online.
