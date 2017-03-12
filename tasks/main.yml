@@ -31,5 +31,11 @@
     api_token: "{{ api_token }}"
   register: droplet
 
+- name: Add new host to inventory.
+  add_host:
+    name: "{{ droplet.ip_address }}"
+    group: droplets
+  when: droplet is defined
+
 - debug: msg="Droplet {{ droplet.droplet.id }} created."
 - debug: msg="Droplet IP address is {{ droplet.droplet.ip_address }}"

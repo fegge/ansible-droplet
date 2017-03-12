@@ -1,7 +1,7 @@
 Droplet
 =======
 
-Create a Digital Ocean droplet.
+Creates a Digital Ocean droplet and adds the address to the group `droplets`.
 
 Requirements
 ------------
