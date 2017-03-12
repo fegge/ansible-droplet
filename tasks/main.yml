@@ -37,5 +37,5 @@
     group: droplets
   when: digital_ocean.droplet is defined
 
-- debug: msg="Droplet {{ droplet.droplet.id }} created."
-- debug: msg="Droplet IP address is {{ droplet.droplet.ip_address }}"
+- debug: msg="Droplet {{ digital_ocean.droplet.id }} created."
+- debug: msg="Droplet IP address is {{ digital_ocean.droplet.ip_address }}"
