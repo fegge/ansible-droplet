@@ -1,11 +1,11 @@
 ---
 - name: Check if SSH key exists
   local_action: stat path="~/.ssh/{{ ssh_key_name }}"
-  register: local_ssh_key
+  register: private_ssh_key
   
 - name: Generate new SSH key
   local_action: command ssh-keygen -q -t rsa -b 4096 -N "{{ ssh_key_password }}" -f ~/.ssh/{{ ssh_key_name }}
-  when: not local_ssh_key.stat.exists
+  when: not private_ssh_key.stat.exists
 
 
 - name: Register the SSH key
@@ -15,7 +15,7 @@
     name: "{{ ssh_key_name }}"
     ssh_pub_key: "{{ lookup('file', '~/.ssh/{{ ssh_key_name }}.pub') }}"
     api_token: "{{ api_token }}"
-  register: digital_ocean
+  register: public_ssh_key
 
 # Using unique_name ensures idempotency, and using wait 
 # ensures that the droplet is online before returning
@@ -28,7 +28,7 @@
     size_id: "{{ size_id }}"
     region_id: "{{ region_id }}"
     image_id: "{{ image_id }}"
-    ssh_key_ids: "{{ digital_ocean.ssh_key.id }}"
+    ssh_key_ids: "{{ public_ssh_key.ssh_key.id }}"
     api_token: "{{ api_token }}"
     wait: yes
   register: digital_ocean
@@ -45,5 +45,5 @@
 # - name: Wait for droplet to come online.
 #   local_action: "wait_for port=22 host={{ digital_ocean.droplet.ip_address }}"
 
-- debug: msg="Droplet {{ digital_ocean.droplet.id }} created with SSH key {{ digital_ocean.ssh_key.id }}."
+- debug: msg="Droplet {{ digital_ocean.droplet.id }} created with SSH key {{ public_ssh_key.ssh_key.id }}."
 - debug: msg="Droplet IP address is {{ digital_ocean.droplet.ip_address }}"
