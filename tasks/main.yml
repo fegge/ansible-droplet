@@ -33,6 +33,26 @@
     wait: yes
   register: digital_ocean
 
+- name: Add block storage
+  digital_ocean_block_storage:
+    state: present
+    command: create
+    api_token: "{{ api_token }}"
+    region: "{{ region_id }}"
+    block_size: "{{ block_size }}"
+    volume_name: "{{ region_id }}-block-storage"
+  when: block_size > 0
+
+- name: Attach block storage to host
+  digital_ocean_block_storage:
+    state: present
+    command: attach
+    api_token: "{{ api_token }}"
+    volume_name: "{{ region_id }}-block-storage"
+    region: "{{ region_id }}"
+    droplet_id: "{{ digital_ocean.droplet.id }}"
+  when: block_size > 0
+
 - name: Add new host to inventory
   add_host:
     name: "{{ digital_ocean.droplet.ip_address }}"
