@@ -35,9 +35,9 @@ The following example playbook creates a new Ubuntu Xenial droplet named `pikach
     - hosts: all
       roles:
          - role: fegge.droplet
-         - ssh_key_name: ocean-default
-         - droplet_name: pikachu
-         - api_token: a4fe0892...b0
+           ssh_key_name: do-ssh-key
+           droplet_name: pikachu
+           api_token: a4fe0892...b0
 
 License
 -------
